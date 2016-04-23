@@ -18,7 +18,9 @@ class SearchNotes extends React.Component{
             <input type="text" className="form-control" ref={(ref) => this.getRef(ref)} />
           </div>
           <div className="form-group col-sm-5">
-            <button type="submit" className="btn btn-block btn-primary">Search your notes</button>
+            <button type="submit" className="btn btn-block btn-primary">
+              <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </button>
           </div>
         </form>
       </div>

@@ -13,6 +13,7 @@ class Notes extends React.Component{
       notes: []
     }
     this.handleAddNote = this.handleAddNote.bind(this);
+    this.handleDeleteNote = this.handleDeleteNote.bind(this);
   }
   componentDidMount(){
     this.init(this.props.username, this.props.priority)
@@ -36,13 +37,21 @@ class Notes extends React.Component{
       data: this.state.notes.concat([newNote])
     })
   }
+  handleDeleteNote(index){
+    console.log(this);
+    //var ind = this.state.notes.indexOf(index);
+    this.state.notes.splice(index, 1);
+    base.post(`${this.props.username}/${this.props.priority}`, {
+      data: this.state.notes
+    })
+  }
 
   render(){
     return (
       <div>
-        <h3> Notes with {this.props.priority}</h3>
+        <h3>{this.props.priority} priority</h3>
         <AddNote priority={this.props.priority} username={this.props.username} addNote={this.handleAddNote} />
-        <NotesList notes={this.state.notes} />
+        <NotesList deleteNote={this.handleDeleteNote} notes={this.state.notes} />
       </div>
     )
   }

@@ -1,13 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-const NotesList = ({notes}) =>  {
-  return (
-    <ul className="list-group">
-      {notes.map((note, index) => (
-        <li className="list-group-item" key={index}>{note}</li>
-      ))}
-    </ul>
-  )
+class NotesList extends React.Component{
+  handleDeleteNote(index){
+    this.props.deleteNote(index);
+  }
+  render() {
+    return (
+      <ul className="list-group">
+        {this.props.notes.map((note, index) => (
+          <li className="list-group-item" key={index}> {note}
+            <button onClick={() => this.handleDeleteNote(index)} style={{float:"right", marginRight:"-5px", height:"30px", width:"30px"}} type="button" class="btn btn-default" aria-label="Delete note">
+              <span className="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    );
+  }
 }
 
-export default NotesList
+export default NotesList;
