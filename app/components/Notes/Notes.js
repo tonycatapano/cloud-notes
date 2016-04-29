@@ -20,7 +20,7 @@ class Notes extends React.Component{
   }
   componentWillReceiveProps(nextProps){
     base.removeBinding(this.ref);
-    this.init(nextProps.params.username, this.props.priority);
+    this.init(nextProps.username, this.props.priority);
   }
   componentWillUnmount(){
     base.removeBinding(this.ref);
@@ -38,8 +38,6 @@ class Notes extends React.Component{
     })
   }
   handleDeleteNote(index){
-    console.log(this);
-    //var ind = this.state.notes.indexOf(index);
     this.state.notes.splice(index, 1);
     base.post(`${this.props.username}/${this.props.priority}`, {
       data: this.state.notes
